@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import Movie from "./Movie.js";
 import { FormattedMessage } from "react-intl";
+import Movie from './Movie.js'
 
 
 
-
-export const MovieList = () => {
+function MovieList (){
 
 
   let [movies, setMovies] = useState(null)
@@ -60,16 +59,16 @@ export const MovieList = () => {
           </tr>
         </thead>
         <tbody>
-          {movies.map((e, i) => (
-            <Movie key={i} movie={e} />
+
+          {movies && movies.map( (element,i) =>(
+            <Movie key={i} movie={element} />
           ))}
+
         </tbody>
       </table>
     </div>
-
-
-
   );
+
 
 
   };
