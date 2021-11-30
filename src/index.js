@@ -1,18 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+
 import reportWebVitals from './reportWebVitals';
 import { IntlProvider } from "react-intl";
 
+import locale_Es from "./locales/es.json"
+import locale_En from "./locales/en.json"
+
 import MovieList from './components/MovieList.js'
+
+// var lang = 'en'
+var lang = navigator.language.substring(0,2)
+var localM;
+
+console.log(lang)
+
+lang === "es"? localM=locale_Es  : localM=locale_En;
 
 
 ReactDOM.render(
 
-  //<IntlProvider locale={language} messages={localM}>
-
-<IntlProvider >
+<IntlProvider locale={lang} messages={localM}>
   <MovieList/> 
 </IntlProvider>, document.getElementById("root")
   
