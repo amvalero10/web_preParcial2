@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FormattedMessage } from "react-intl";
 import Movie from './Movie.js'
 import * as d3 from "d3";
+import MovieDetail from './MovieDetail.js'
 
 
 let lang = navigator.language.substring(0,2)
@@ -17,6 +18,8 @@ function MovieList (){
 
 
   let [movies, setMovies] = useState(null)
+
+  const [selectedUser, setSelectedUser] = useState(null);
 
 
     // const URL = 'https://gist.githubusercontent.com/josejbocanegra/f784b189117d214578ac2358eb0a01d7/raw/2b22960c3f203bdf4fac44cc7e3849689218b8c0/data-es.json';
@@ -152,12 +155,33 @@ svg.selectAll("mybar")
         <tbody>
 
           {movies && movies.map( (element,i) =>(
+
+<>
+            <td key={element.id} onClick={() => setSelectedUser(element)}>{element.name}</td>
             <Movie key={i} movie={element} />
+</>
           ))}
 
         </tbody>
       </table>
 
+
+
+      {/* <ul>
+          {movies.map(u => (
+            <li key={u.id} onClick={() => setSelectedUser(u)}>{u.name}</li>
+          ))}
+        </ul> */}
+
+
+      <div>
+        <h2>User Details</h2>
+        {selectedUser ? <MovieDetail poster={selectedUser.poster} 
+                                    name={selectedUser.name}  
+                                    description ={selectedUser.description}  
+                                    cast = {selectedUser.cast}  
+                                      /> : true }
+      </div>
 
 
       

@@ -13,7 +13,7 @@ const Movie = (props) => {
   return (
     <tr>
       <th scope="row">{props.movie.id}</th>
-      <td>{props.movie.name}</td>
+      {/* <td>{props.movie.name }</td> */}
       <td>{props.movie.directedBy}</td>
       <td>{props.movie.country}</td>
       <td>
