@@ -10,7 +10,7 @@ import locale_En from "./locales/en.json"
 
 import MovieList from './components/MovieList.js'
 
-// var lang = 'en'
+//var lang = 'en'
 var lang = navigator.language.substring(0,2)
 var localM;
 
