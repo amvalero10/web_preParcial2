@@ -28,15 +28,27 @@ function MovieList (){
 
 
 
-
-
     useEffect(()=>{
           // const URL = 'https://gist.githubusercontent.com/josejbocanegra/f784b189117d214578ac2358eb0a01d7/raw/2b22960c3f203bdf4fac44cc7e3849689218b8c0/data-es.json'
-          fetch(URL).then(res=>res.json())
-          .then(res=>{
-              console.log(res)
-              setMovies(res);
+          if(!navigator.onLine){
+            if(localStorage.getItem("pelis") === null) {
+              setMovies("Loading...")
+            } else {
+              setMovies( JSON.parse(localStorage.getItem("pelis")) );
+            }
+        }else {
+          const URL2 = URL;
+          fetch(URL2).then(res=>res.json()).then(res=>{
+            setMovies(res);
+              localStorage.setItem("pelis", JSON.stringify(res) );
           })
+      }
+
+          // fetch(URL).then(res=>res.json())
+          // .then(res=>{
+          //     console.log(res)
+          //     setMovies(res);
+          // })
       
   }, []);
 
@@ -64,9 +76,9 @@ const svg = d3.select("#my_dataviz")
 
 // Parse the Data
 //d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/7_OneCatOneNum_header.csv").then( function(data) {
+
+  
 d3.json(URL).then( function(data) {
-
-
 
 // X axis
 const x = d3.scaleBand()
